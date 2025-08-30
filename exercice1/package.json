@@ -1,0 +1,16 @@
+{
+  "name": "filtre-age",
+  "version": "1.0.0",
+  "description": "Un projet Node.js pour filtrer les utilisateurs majeurs en fonction de leur date de naissance",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "keywords": ["age", "filtre", "date", "majeur"],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
