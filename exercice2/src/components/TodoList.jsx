@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
+import './TodoList.css';
 
 function TodoList() {
-  // État initial avec 3 tâches dont une terminée
   const [tasks, setTasks] = useState([
     { id: 1, text: "test1", completed: false },
     { id: 2, text: "test2", completed: true },
@@ -55,38 +55,43 @@ function TodoList() {
   const allTasksCompleted = tasks.length > 0 && tasks.every(task => task.completed);
 
   return (
-    <div>
-      <h1>Liste de tâches</h1>
+    <div className="todo-container">
+      <h1 className="todo-header">Ma Liste de Tâches</h1>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="todo-form">
         <input
           type="text"
           value={newTaskText}
           onChange={(e) => setNewTaskText(e.target.value)}
-          placeholder="Nouvelle tâche"
+          placeholder="Ajouter une nouvelle tâche..."
           maxLength={50}
+          className="todo-input"
         />
-        <button type="submit">Ajouter</button>
+        <button type="submit" className="todo-button">
+          Ajouter
+        </button>
       </form>
 
-      {error && <p style={{ color: 'red' }}>{error}</p>}
+      {error && <div className="error-message">{error}</div>}
 
       {allTasksCompleted ? (
-        <p>Toutes les tâches sont terminées !</p>
+        <div className="completion-message">
+          Toutes les tâches sont terminées ! 🎉
+        </div>
       ) : (
-        <ul>
+        <ul className="todo-list">
           {tasks.map(task => (
-            <li key={task.id}>
+            <li
+              key={task.id}
+              className={`todo-item ${task.completed ? 'completed' : ''}`}
+            >
               <input
                 type="checkbox"
                 checked={task.completed}
                 onChange={() => toggleTask(task.id)}
+                className="todo-checkbox"
               />
-              <span style={{ 
-                textDecoration: task.completed ? 'line-through' : 'none' 
-              }}>
-                {task.text}
-              </span>
+              <span className="todo-text">{task.text}</span>
             </li>
           ))}
         </ul>
